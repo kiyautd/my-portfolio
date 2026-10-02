@@ -1,0 +1,122 @@
+/* 1. አጠቃላይ የገፅ ማስተካከያ (Reset) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* ሊንኩን ስንነካው ዘሎ ከመሄድ ይልቅ ቀስ ብሎ እንዲንሸራተት ያደርጋል */
+}
+
+body {
+    background-color: #f4f7f6; /* ለዓይን የማይከብድ ግራጫ ዳራ */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 2. የራስጌ (Header) እና ማውጫ ዲዛይን */
+header {
+    background-color: #2c3e50; /* ፕሮፌሽናል ጥቁር ሰማያዊ */
+    color: #ffffff;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between; /* ስሙን በግራ፣ ማውጫውን በቀኝ ያደርጋል */
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #3498db; /* ሊንኩ ላይ ማውሱን ስናሳርፍ የሚቀየር ቀለም */
+}
+
+/* 3. የዋና ክፍሎች (Sections) ማስተካከያ */
+section {
+    background-color: #ffffff;
+    margin: 40px 10%;
+    padding: 40px;
+    border-radius: 8px; /* ጠርዙን ክብ ያደርገዋል */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ቆንጆ ጥላ (Shadow) ይሰጠዋል */
+    min-height: 80vh; /* እያንዳንዱን ክፍል የስክሪኑን 80% ርዝመት እንዲሸፍን ያሰፋዋል */
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* 4. የፎርም እና መላኪያ ቁልፍ (Button) ዲዛይን */
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* 5. እግረጌ (Footer) */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 40px;
+}
+
+hr {
+    display: none; /* የድሮውን አግድም መስመር እንደብቀዋለን */
+}
+
+/* 6. የሞባይል ስክሪን ማስተካከያ (Responsive Design) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* ስሙን እና ማውጫውን ከላይ እና ከታች ያደርጋል */
+        text-align: center;
+        padding: 15px;
+    }
+    
+    nav {
+        margin-top: 15px;
+    }
+    
+    nav a {
+        margin: 0 10px;
+        font-size: 15px;
+    }
+    
+    section {
+        margin: 20px 5%; /* በሞባይል ጊዜ ጠርዙ ላይ ያለውን ክፍተት ያጠባል */
+        padding: 20px;
+        min-height: auto; /* የክፍሎቹን ርዝመት እንደ ፅሁፉ መጠን ያስተካክላል */
+    }
+}

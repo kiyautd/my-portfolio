@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የእኔ ፖርትፎሊዮ | Professional Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. ዋና ማውጫ (Navigation) -->
+    <header>
+        <h1>የእኔ ስም</h1> <!-- የራስህን ስም እዚህ ጋር መፃፍ ትችላለህ -->
+        <nav>
+            <a href="#about">ስለ እኔ</a> | 
+            <a href="#projects">ፕሮጀክቶች</a> | 
+            <a href="#contact">አግኙኝ (AI)</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <!-- 2. ስለ እኔ ክፍል -->
+    <section id="about">
+        <h2>ስለ እኔ</h2>
+        <p>ሰላም! እኔ የኢንፎርሜሽን ቴክኖሎጂ (IT) ተማሪ እና የሶፍትዌር አዘጋጅ ነኝ። በዋናነት በ Front-end ዌብ ዴቨሎፕመንት (HTML, CSS, JavaScript)፣ በዳታቤዝ ዲዛይን (ERD, Normalization) እና በሃርድዌር/ኔትወርክ ማስተካከል (Troubleshooting) ላይ ጥሩ ክህሎት አለኝ። ቴክኖሎጂን በመጠቀም የዕለት ተዕለት ችግሮችን የሚፈቱ አዳዲስ አሰራሮችን መፍጠር ያስደስተኛል።</p>
+    </section>
+
+    <hr>
+
+    <!-- 3. የፕሮጀክቶች ክፍል -->
+    <section id="projects">
+        <h2>የሰራኋቸው ፕሮጀክቶች</h2>
+        <ul>
+            <li style="margin-bottom: 10px;">
+                <strong>AI የተገጠመለት ፖርትፎሊዮ ዌብሳይት:</strong> 
+                ይህ አሁን እየተመለከቱት ያለው ዌብሳይት ነው። የፊት ገፁን በ HTML/CSS እና ጃቫስክሪፕት (AJAX) አዘጋጅቼ፣ የጀርባ ሞተሩን ደግሞ በ Python (CGI) በመፃፍ ከ Google Gemini AI ጋር አገናኝቼዋለሁ።
+            </li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- 4. መገናኛ እና የ AI ፎርም (ቅድም የሰራነው ነው) -->
+    <!-- 4. መገናኛ እና የ AI ፎርም -->
+    <section id="contact">
+        <h2>አግኙኝ / AI ረዳት</h2>
+        <p>ማንኛውንም ጥያቄ ቢኖርዎት ከስር ይፃፉልኝ፤ የኔ AI ረዳት ፈጥኖ ይመልስልዎታል።</p>
+        
+        <!-- የቻት መልእክቶች የሚወጡበት ሳጥን -->
+        <div id="chat-box" style="background: #f9f9f9; padding: 15px; border-radius: 5px; min-height: 100px; margin-bottom: 15px; border: 1px solid #ddd;">
+            <em>የ AI መልስ እዚህ ይወጣል...</em>
+        </div>
+
+        <!-- ፎርሙን በ JavaScript እንድንቆጣጠረው ID ሰጠነው (action አያስፈልገውም) -->
+        <form id="chat-form">
+            <textarea id="user-input" name="message" rows="4" cols="50" placeholder="ጥያቄዎን እዚህ ይፃፉ..." required></textarea>
+            <br><br>
+            <button type="submit" id="submit-btn">መልዕክት ላክ (Submit)</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- 5. እግረጌ -->
+    <footer>
+        <p>&copy; 2026 የእኔ ፖርትፎሊዮ. መብቱ በህግ የተጠበቀ ነው።</p>
+    </footer>
+
+    <!-- የ JavaScript ማዋቀሪያ -->
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        const submitBtn = document.getElementById('submit-btn');
+
+        chatForm.addEventListener('submit', async function(e) {
+            // 1. ፎርሙ ዌብሳይቱን ሪፍሬሽ እንዳያደርግ እንከለክላለን
+            e.preventDefault();
+
+            const message = userInput.value;
+            if (!message) return;
+
+            // 2. ተጠቃሚው የፃፈውን እናሳያለን፣ AIው እያሰበ መሆኑን እንነግራለን
+            chatBox.innerHTML = `<b>አንተ:</b> ${message} <br><br> <em>AIው እያሰበ ነው... ⏳</em>`;
+            userInput.value = ''; // መፃፊያውን ባዶ እናደርጋለን
+            submitBtn.disabled = true; // እስኪመልስ ድረስ ቁልፉን እንቆልፋለን
+
+            try {
+                // 3. መረጃውን ከጀርባ ወደ ፓይዘን ሰርቨራችን እንልካለን
+                const response = await fetch('cgi-bin/backend.py', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'message=' + encodeURIComponent(message)
+                });
+
+                // 4. ከፓይዘን የተመለሰውን መልስ አምጥተን ሳጥኑ ውስጥ እናስገባዋለን
+                const aiReply = await response.text();
+                chatBox.innerHTML = `<b>አንተ:</b> ${message} <hr> ${aiReply}`;
+            } catch (error) {
+                chatBox.innerHTML = `<span style="color:red;">ይቅርታ፣ የኔትወርክ ወይም የሰርቨር ችግር አጋጥሟል።</span>`;
+            } finally {
+                submitBtn.disabled = false; // ቁልፉን መልሰን እንከፍታለን
+            }
+        });
+    </script>
+
+</body>
+</html>
